@@ -1,17 +1,26 @@
-# Pixel Art Generation – Stable Diffusion, Fine-Tuning & Custom Model
+# Pixel Art Generation – Stable Diffusion, Fine-Tuning, CLIP Encoders & Custom Model
 
-This repository contains multiple sub-projects exploring pixel-art generation using different approaches with Stable Diffusion and custom architectures.  
-Please make sure to **install all dependencies first**:
+This repository contains multiple sub-projects exploring **pixel-art generation** using:
+- Stable Diffusion  
+- Fine-tuning approaches  
+- Custom UNet + CLIP architectures  
+- Text-embedding preprocessing (CLIP encoder)
+
+Before running anything, install the dependencies:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## 📁 Repository Structure
+---
 
-### **1. `already_trained_model/` – Pixel Art with a Pre-Trained Stable Diffusion Model**
+# 📁 Repository Structure
 
-In this folder, we take an **already trained Stable Diffusion model** and use it to generate **pixel-art-style images**.
+---
+
+## **1. `already_trained_model/` – Pixel Art Generation From a Pre-Trained Stable Diffusion Model**
+
+Use an **already trained Stable Diffusion** model to generate pixel-art–style images.
 
 Run:
 
@@ -19,17 +28,35 @@ Run:
 python already_trained_model/already_trained_test/generate_pixel_art.py
 ```
 
-### **2. `pixelart_finetune/` – Fine-Tuning Stable Diffusion on a Pixel-Art Dataset**
+Output is saved in:
 
-Fine-tune a Stable Diffusion model on pixel-art dataset.
+```
+already_trained_model/already_trained_test/output.png
+```
 
-Run:
+---
+
+## **2. `pixelart_finetune/` – Fine-Tuning Stable Diffusion on Pixel-Art Data**
+
+Fine-tune Stable Diffusion on a custom pixel-art dataset.
+
+Run training:
 
 ```bash
 python pixelart_finetune/train_fine_tune.py
 ```
 
-### **3. `source_code_clip/` – Training a Model From Scratch (UNet + CLIP Encoder)**
+Comparison image:
+
+```
+pixelart_finetune/comparison_before_after.png
+```
+
+---
+
+## **3. `source_code_clip/` – Custom UNet + CLIP Text Encoder (Training From Scratch)**
+
+Train your own diffusion pipeline with a UNet + CLIP text embeddings.
 
 Run:
 
@@ -40,16 +67,62 @@ python source_code_clip/main.py
 CLI options:
 
 ```
-parser.add_argument("--dataset_path", type=str, default="data/")
-parser.add_argument("--epochs", type=int, default=30)
-parser.add_argument("--batch_size", type=int, default=8)
-parser.add_argument("--lr", type=float, default=1e-4)
-parser.add_argument("--img_size", type=int, default=64)
-parser.add_argument("--save_every", type=int, default=5)
-parser.add_argument("--output_dir", type=str, default="outputs/")
-parser.add_argument("--use_gpu", action="store_true")
+--dataset_path       
+--epochs             
+--batch_size         
+--lr                 
+--img_size           
+--save_every         
+--output_dir         
+--use_gpu            
 ```
 
-### Dataset
+---
 
-https://www.kaggle.com/datasets/ayhantasyurt/pixel-art-2dgame-charecter-sprites-idle
+## **4. `clipEncoder/` – Generate CLIP Text Embeddings for Captions**
+
+This folder contains the script:
+
+```
+clipEncoder/clip_encode_labels.py
+```
+
+### What this script does
+
+It:
+
+1. Loads images from:
+   ```
+   dataset/train_images/
+   ```
+2. Loads matching captions from:
+   ```
+   dataset/train_images_captions/
+   ```
+3. Generates CLIP text embeddings  
+4. Saves:
+   - `clip_text_embs.npy`  
+   - `clip_image_paths.txt`
+
+### How to run it
+
+```bash
+python clipEncoder/clip_encode_labels.py
+```
+
+---
+
+# Dataset
+
+Direct download:
+
+https://huggingface.co/datasets/ayhantasyurt/pixel-art-2d-game-character-sprites-idle/resolve/main/pixel-art-2dgame-charecter-sprites-idle.zip
+
+---
+
+# Installation
+
+```bash
+pip install -r requirements.txt
+```
+
