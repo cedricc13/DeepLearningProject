@@ -1,0 +1,9 @@
+cat << 'EOF' >> .gitignore
+# Gros fichiers à ne jamais pousser
+diffusion_model_complete.keras
+clipEncoder/clip_text_embs.npy
+clipEncoder/clip_image_paths.txt
+
+# Dossier dataset si tu veux pas le versionner
+dataset/
+EOF
