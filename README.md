@@ -18,9 +18,8 @@ pip install -r requirements.txt
 
 ---
 
-## **1. `already_trained_model/` – Pixel Art Generation From a Pre-Trained Stable Diffusion Model**
-
-Use an **already trained Stable Diffusion** model to generate pixel-art–style images.
+## 1. `already_trained_model/` – Pixel Art Generation From a Pre-Trained Stable Diffusion Model**
+### 1.1 Use an **already trained Stable Diffusion** model to generate pixel-art–style images.
 
 Run:
 
@@ -28,13 +27,20 @@ Run:
 python already_trained_model/already_trained_test/generate_pixel_art.py
 ```
 
-Output is saved in:
+### 1.2 Downscale quality of previously generated high resolution images imposing constraints on number of pixels and color palette.
+
+Run:
+
+```bash
+python already_trained_model/already_trained_test/image_downscaling.py
+```
+
+### 1.3 Results
+All outputs are saved in:
 
 ```
-already_trained_model/already_trained_test/output.png
+already_trained_model/already_trained_test/
 ```
-
----
 
 ## **2. `pixelart_finetune/` – Fine-Tuning Stable Diffusion on Pixel-Art Data**
 
